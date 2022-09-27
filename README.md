@@ -44,7 +44,7 @@ Naming convention isn't mandated but using it automates role allocation. The con
 to **include *paths* in the file name** (eg paths.livecodescript)
 
   
-## Workflow
+## Workflow
 The main/home menu stores settings for all projects you use skScriptLoader on. 
 Create a new with the + button at the top of the data grid, or close an existing entry with the button at the bottom.
 To delete an entry, select it and a bin icon will appear
