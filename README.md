@@ -1,10 +1,10 @@
 # skScriptLoader
-A liveCode IDE tool to reload script only stacks automatically after editing externally in for example VSCode
+A liveCode IDE tool to reload script-only stacks automatically after editing these externally, in for example VSCode
 
 
 For those wanting to edit liveCodeScript externally in a mainstream code editor such as Sublime, Atom or VSCode, there are  addons that provide code formatting, syntax colouring and syntax checking/linting but there is no automated integration between LiveCode IDE and these tools making this an arduous affair.
 
-skScriptLoader is designed to replace as much of the code in a project as possible using **script-only stacks**, which are directly editable in external code editor. It is inteded to be used as a plugin; it is a palette which during setup takes a fair amount of screen real estate but during use is minimised to a small palette top-right of the screen with 2 buttons to reaload all SO stacks and to enter setup again.
+skScriptLoader is designed to replace as much of the code in a project as possible using **script-only stacks**, which are directly editable in external code editor. It is intended to be used as a plugin; it is a palette which during setup takes a fair amount of screen real estate but during use is minimised to a small palette top-right of the screen with 2 buttons to reaload all SO stacks and to enter setup again.
 
 ## Basics
 1. When editing in an external code editor it is conventient to have all SO stacks in a single folder, whereas in the standalone app these may reside in different locations (depending on whether these need to be in a writeable location or not for example). skScriptLoader creates a 'paths' stack which is loaded first, into the backscripts, and abstracts the folder paths used for both IDE and runtime so that a funciton call returns the correct path depending on whether in the IDE or runtime.
