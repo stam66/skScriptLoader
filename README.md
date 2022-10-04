@@ -13,6 +13,15 @@ skScriptLoader is designed to replace as much of the code in a project as possib
 4. Once that's done, click a button to create load/unload scripts for all automatically and use the copy button to paste into the script of the mainstack. 
 5. skScriptLoader can then be 'iconified' to just proviede a button on the screen in the IDE to reload all SO stacks in the IDE, once edited and saved externally
 
+## How to use: In a nutshell
+1. Declare a location for SO stacks for the proejct in IDE and any other locations to be used, and create a 'paths' stack.
+2. Assign a role and location (from the declared locations in the paths stack)
+3. Generate the scripts and copy these. 
+4. Past the scripts into the mainstack (add a preOpenStack handler to call 'loadScripts' to load all SO stacks when opening said mainstack"
+
+<b>Note:</b> Use the minimise button to iconfiy the stack and show the 'reloader' as a floating palette top-right.
+
+
 ## How SO stacks are used
 Script-only stacks are intended to replace stack/card/library/backsripts.
 #### Stack scripts
@@ -67,3 +76,46 @@ Once all roles and folder locations have been designated as needed, use the copy
 Once this is done, skScriptLoader can be iconified to leave 2 small buttons top right of the screen (reload all SO scripts and re-enter setup).
 Clicking the reload button refreshes any changes made to stacks when saved external to the IDE.
 
+
+## How to use: more detail
+#### Paths Stack
+The first task for a new proejct is to create it's paths stack. If no locations have already been declared, the dialog for declaring locations and creating the paths stack will launch automatically - if already done, this can be revisited using the 'paths' button at the top.
+
+The first locations to be declared is the folder that contains all the SO stacks for the project:
+1. Name the paths stack as you wish (note the Caveats/Issues section)
+2. Name the location that will be used as a function to return the central folder that will house most of the SO stacks in the IDE
+3. use the 'choose' button to add the absolue filepath to this folder - this is used only in the IDE, so the paths stack can be lauched after being unloaded from memory. In standalones, this is abstracted as defined.
+4. Add any other locations where SO stacks may reside when running as standalone
+5. Generate the script and save the stack as an SO stack inside the folder that houses all SO stacks
+
+Declaring the central repository folder will load all SO stacks in a list for processing (as below).
+
+#### Load/Unload scripts
+Dismiss the Paths dialog if open.
+1. for each stack select a role as above, or 'Not Applicable' if not to be included in any scripts of the project.
+2. Select a folder for each stack (as declared in the 'paths' section)
+3. Generate the scripts to load and unload all SO stacks; copy both with the 'copy' button and paste into hte mainstack
+
+#### Use
+1. Minimse skScriptLoader with the minimise button - this will 'iconify' the stack to a small palette top-right with a 'reload' button and a 'edit' button.
+2. After editing and saving scripts externally, click the 'reload' button to remove all SO stacks frome memory and relaod them, which is currently the only way external edits are refreshed in the IDE.
+3. If you want to make changes to the load/unload scripts, click the edit button (eg if you want to add new locations or SO stacks)</p>
+
+
+## Caveats/Issues
+LiveCode chokes on multiple stacks with the same name. Therefore avoid using a central repository for all your proejcts if possible - if these are in memory (either because another stack is also active, or because they're left overs after closing a stack) you will encounter errors.
+It is safest to just copy the stack and rename it (eg original name + project name).
+Any problems please raise an issue in github or pm 'stam' in the LiveCode forums.
+
+
+## Using the test stack
+Settings for an example stack and a test stack are included.  The example stack is a project i'm currently working on - the data included have no value as it's just the setitngs for this stack.
+
+The test stack settings are accompanied by a test stack. In the same folder that contains the test stack there is a "Libraries" folder that contains the SO stacks included for testing purposes.
+As the central repository for SO stacks in the IDE is hard-coded, it is specific to the developer (this is required to permit loading and unloading of all SO stacks, including the paths stack, when edited/saved externally).
+
+If you open the test stack, nothing should work as at this point, the stack has no awareness of the script only stacks.
+Start by editing the settings for the test stack and creating a 'paths' stack in it's "Libraries" folder, and as above, setting roles and locations (in this case just the 1 location exists) for the SO stacks in it's 'Libraries' folder and then generating the scrips. Copy the scripts using the the copy button and minimise skScriptLoader; paste these in the test stack's stack script.
+To ensure the stack functions normally at startup, include a preOpenStack handler that calls the loadScripts hanlder pasted into the stack script. Click the 'reload' button in the minimised icon top right and the stack should now function normaly.
+
+To test live editing, open an SO stack from the 'libraries' folder and edit it externally, making sure to save. Then return to the test stack, hit the reload button in the top right palette and the edited scripts should be live.
