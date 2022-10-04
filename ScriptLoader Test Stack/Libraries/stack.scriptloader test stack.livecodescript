@@ -5,7 +5,7 @@ after openStack
 end openStack
 
 command sayHelloFromStack
-   answer "Hello World! -- from stack script ;)"
+   answer "Hello World -- from stack script :)"
 end sayHelloFromStack
 
 function getLoadedLibraries
