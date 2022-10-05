@@ -26,7 +26,8 @@ I created and use skScriptLoader to replace as much of the code in a project as 
 Script-only stacks are intended to replace stack/card/library/backsripts.
 #### Stack scripts
 Stack scripts can be replaced by SO stacks by being assigned these the behavior of the stack in question. 
-If a stack/substack doesn't exist, nothing happens
+If a stack/substack doesn't exist, nothing happens.
+
 As a behavior, this means you can still add code to the stack script if desired - this will be executed before the behavior script of the stack
 **For a script to be recognised as a stack behavior and loaded correctly, it ***must*** follow the naming convention: 
 stack.*stackName*.livecodescript**
