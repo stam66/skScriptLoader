@@ -6,12 +6,16 @@ For those wanting to edit liveCodeScript externally in a mainstream code editor 
 
 I created and use skScriptLoader to replace as much of the code in a project as possible using **script-only stacks**, which are directly editable in external code editor. It is intended to be used as a plugin; it is a palette which during setup takes a fair amount of screen real estate but during use is minimised to a small palette top-right of the screen with 2 buttons to reaload all SO stacks and to enter setup again.
 
+
+
 ## Basics
 1. When editing in an external code editor it is conventient to have all SO stacks in a single folder, whereas in the standalone app these may reside in different locations (depending on whether these need to be in a writeable location or not for example). skScriptLoader creates a 'paths' stack which is loaded first, into the backscripts, and abstracts the folder paths used for both IDE and runtime so that a funciton call returns the correct path depending on whether in the IDE or runtime.
 2. The first folder path created is the root folder containing all SO stacks in the IDE. Others can be added as needed. The paths stack should be saved to the folder containing the mainstack, ideally in subfolder.
 3. Once the root folder is identified, skScriptLoader will load all SO stacks in that folder to a list, so the developer can assign a role and folder path to each. 
 4. Once that's done, click a button to create load/unload scripts for all automatically and use the copy button to paste into the script of the mainstack. 
 5. skScriptLoader can then be 'iconified' to just proviede a button on the screen in the IDE to reload all SO stacks in the IDE, once edited and saved externally
+
+
 
 ## How to use: In a nutshell
 1. Declare a location for SO stacks for the project in IDE and declare any other locations to be used, and then create the 'paths' stack.
@@ -22,36 +26,35 @@ I created and use skScriptLoader to replace as much of the code in a project as 
 <b>Note:</b> Use the minimise button to iconfiy the stack and show the 'reloader' as a floating palette top-right.
 
 
+
 ## How SO stacks are used
 Script-only stacks are intended to replace stack/card/library/backsripts.
 #### Stack scripts
 Stack scripts can be replaced by SO stacks by being assigned these the behavior of the stack in question. 
-If a stack/substack doesn't exist, nothing happens.
+If a stack/substack doesn't exist, nothing happens. As a behavior, this means you can still add code to the stack script if desired - this will be executed before the behavior script of the stack
 
-As a behavior, this means you can still add code to the stack script if desired - this will be executed before the behavior script of the stack
-**For a script to be recognised as a stack behavior and loaded correctly, it ***must*** follow the naming convention: 
-stack.*stackName*.livecodescript**
+For a script to be recognised as a stack behavior and loaded correctly, it ***must*** follow the naming convention: 
+**stack.*stackName*.livecodescript**
 
 #### Card scripts
 The same applies to card scripts - SO stacks for these are assigned as card behaviors; any cardscript will be executed before the script in the card, if that functionality is needed.
 If a card doesn't exist **it is created based on the name of the SO stack file**. This means you can create the scripts externally in for example VSCode and when you reload it will create the cards in the stack which is also noted in the file name.
-**For a script to recognised as a card script, it ***must*** follow the naming convention: 
-card._cardName_._stackName_.livecodescript**
+For a script to recognised as a card script, it ***must*** follow the naming convention: <br>**card._cardName_._stackName_.livecodescript**
 
 #### Libraries
 These are loaded with the 'start using' command. 
-Naming convention isn't mandated but using it automates role allocation. **The convention is: 
-lib._stackName_.livecodescript**
+Naming convention isn't mandated but using it automates role allocation.  <br>
+The convention is: **lib._stackName_.livecodescript**
 
 #### Backscripts
 For libraries that need to be accessible from anywhere regardless of the message path, these should be loaded into the backScripts. A good example of this would be the 'paths' stack.
-Naming convention isn't mandated but using it automates role allocation. **The convention is: 
-back._stackName_.livecodescript**
+Naming convention isn't mandated but using it automates role allocation. <br>The convention is: **back._stackName_.livecodescript**
 
 #### The _paths_ stack
 This should be a unique file which abstracts folder paths for the SO stacks, and is automatically loaded first and into the backscripts.
-Naming convention isn't mandated but using it automates role allocation. The convention is:
-to **include *paths* in the file name** (eg paths.livecodescript)
+Naming convention isn't mandated but using it automates role allocation. <br>
+The convention is: to **include the string *paths* in the file name** (eg paths.livecodescript)
+
 
   
 ## Workflow
@@ -78,6 +81,7 @@ Once this is done, skScriptLoader can be iconified to leave 2 small buttons top 
 Clicking the reload button refreshes any changes made to stacks when saved external to the IDE.
 
 
+
 ## How to use: more detail
 #### Paths Stack
 The first task for a new proejct is to create it's paths stack. If no locations have already been declared, the dialog for declaring locations and creating the paths stack will launch automatically - if already done, this can be revisited using the 'paths' button at the top.
@@ -97,16 +101,18 @@ Dismiss the Paths dialog if open.
 2. Select a folder for each stack (as declared in the 'paths' section)
 3. Generate the scripts to load and unload all SO stacks; copy both with the 'copy' button and paste into hte mainstack
 
-#### Use
+#### How to use once set up
 1. Minimse skScriptLoader with the minimise button - this will 'iconify' the stack to a small palette top-right with a 'reload' button and a 'edit' button.
 2. After editing and saving scripts externally, click the 'reload' button to remove all SO stacks frome memory and relaod them, which is currently the only way external edits are refreshed in the IDE.
 3. If you want to make changes to the load/unload scripts, click the edit button (eg if you want to add new locations or SO stacks)</p>
+
 
 
 ## Caveats/Issues
 LiveCode chokes on multiple stacks with the same name. Therefore avoid using a central repository for all your proejcts if possible - if these are in memory (either because another stack is also active, or because they're left overs after closing a stack) you will encounter errors.
 It is safest to just copy the stack and rename it (eg original name + project name).
 Any problems please raise an issue in github or pm 'stam' in the LiveCode forums.
+
 
 
 ## Using the test stack
