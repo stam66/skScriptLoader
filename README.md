@@ -14,7 +14,7 @@ I created and use skScriptLoader to replace as much of the code in a project as 
 5. skScriptLoader can then be 'iconified' to just proviede a button on the screen in the IDE to reload all SO stacks in the IDE, once edited and saved externally
 
 ## How to use: In a nutshell
-1. Declare a location for SO stacks for the proejct in IDE and any other locations to be used, and create a 'paths' stack.
+1. Declare a location for SO stacks for the project in IDE and declare any other locations to be used, and then create the 'paths' stack.
 2. Assign a role and location (from the declared locations in the paths stack)
 3. Generate the scripts and copy these. 
 4. Past the scripts into the mainstack (add a preOpenStack handler to call 'loadScripts' to load all SO stacks when opening said mainstack"
